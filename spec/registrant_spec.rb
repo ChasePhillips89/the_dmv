@@ -25,7 +25,7 @@ RSpec.describe Registrant do
       expect(registrant_1.permit?).to be(true)
     end
 
-    it 'returns false if the registrant does not have a permit' do
+    it 'returns false if they do not have a permit' do
       registrant_2 = Registrant.new('Penny', 15)
       expect(registrant_2.permit?).to be(false)
     end
