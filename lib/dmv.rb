@@ -9,10 +9,10 @@ attr_reader :facilities
   end
 
   def facilities_offering_service(service)
-    result = []  
+    fac_offer_serv = []  
     @facilities.each do |facility| 
-      result << facility if facility.services.include?(service)
+      fac_offer_serv << facility if facility.services.include?(service)
     end
-    result  
+    fac_offer_serv 
   end
 end

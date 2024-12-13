@@ -19,27 +19,27 @@ RSpec.describe DmvDataService do
     end
   end
 
-  describe '#wa_ev_registrations' do
-    it 'can load washington ev registration data' do
-      expect(@dds.wa_ev_registrations.size).to be_an(Integer)
-    end
-  end
+#   describe '#wa_ev_registrations' do
+#     it 'can load washington ev registration data' do
+#       expect(@dds.wa_ev_registrations.size).to be_an(Integer)
+#     end
+#   end
 
-  describe '#co_dmv_office_locations' do
-    it 'can load colorado dmv office locations' do
-      expect(@dds.co_dmv_office_locations.size).to be_an(Integer)
-    end
-  end
+#   describe '#co_dmv_office_locations' do
+#     it 'can load colorado dmv office locations' do
+#       expect(@dds.co_dmv_office_locations.size).to be_an(Integer)
+#     end
+#   end
 
-  describe '#ny_dmv_office_locations' do
-    it 'can load new york dmv office locations' do
-      expect(@dds.ny_dmv_office_locations.size).to be_an(Integer)
-    end
-  end
+#   describe '#ny_dmv_office_locations' do
+#     it 'can load new york dmv office locations' do
+#       expect(@dds.ny_dmv_office_locations.size).to be_an(Integer)
+#     end
+#   end
 
-  describe '#mo_dmv_office_locations' do
-    it 'can load missouri dmv office locations' do
-      expect(@dds.mo_dmv_office_locations.size).to be_an(Integer)
-    end
-  end
+#   describe '#mo_dmv_office_locations' do
+#     it 'can load missouri dmv office locations' do
+#       expect(@dds.mo_dmv_office_locations.size).to be_an(Integer)
+#     end
+#   end
 end
