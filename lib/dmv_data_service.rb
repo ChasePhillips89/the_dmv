@@ -1,3 +1,4 @@
+require "faraday"
 class DmvDataService
   def load_data(source)
     response = Faraday.get(source)
