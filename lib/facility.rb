@@ -16,8 +16,7 @@ class Facility
   end
 
   def register_vehicle(vehicle)
-    if @services.include?('Vehicle Registration')
-      
+     
       vehicle.registration_date = Date.new(2023, 1, 12)
 
       plate_type = vehicle.plate_type
@@ -25,9 +24,6 @@ class Facility
       # collect_fees(plate_type) Unsure if this is necessary
 
       @registered_vehicles << vehicle
-    else
-      puts "Vehicle Registration service not available."
-    end
   end
 
   def collect_fees(plate_type)
@@ -37,22 +33,6 @@ class Facility
       @collected_fees += 50
     elsif plate_type == :ev
       @collected_fees += 75
-    else
-      @collected_fees += 0  
-    end
-  end
-
- 
-
-  def collect_fees(plate_type)
-    
-    case plate_type
-    when :regular
-      @collected_fees += 100
-    when :antique
-      @collected_fees += 25
-    when :ev
-      @collected_fees += 200
     else
       @collected_fees += 0  
     end
