@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 RSpec.describe 'Facility and Vehicle Registration' do
+  
+  it 'can initialize' do
+    facility = Facility.new('DMV Tremont Branch', '2855 Tremont Place Suite 118 Denver CO 80205', '(720) 865-4600')
+    expect(facility).to be_an_instance_of(Facility)
+    expect(facility.name).to eq('DMV Tremont Branch')
+    expect(facility.address).to eq('2855 Tremont Place Suite 118 Denver CO 80205')
+    expect(facility.phone).to eq('(720) 865-4600')
+    expect(facility.services).to eq([])
+  end
   it 'adds a service to a facility' do
     facility = Facility.new('DMV Tremont Branch', '2855 Tremont Place Suite 118 Denver CO 80205', '(720) 865-4600')
     facility.add_service('Vehicle Registration')
