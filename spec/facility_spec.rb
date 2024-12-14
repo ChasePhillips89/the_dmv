@@ -24,6 +24,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     
     facility.register_vehicle(vehicle)
 
+    
     expect(vehicle.registration_date).to eq(Date.new(2023, 1, 12))
     expect(vehicle.plate_type).to eq(:regular)
   end
@@ -87,7 +88,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     
   end
 
-  it 'does not register vehicles if services are not available' do
+  it 'does not register vehicles if there are no services' do
     facility = Facility.new('DMV Northeast Branch', '4685 Peoria Street Suite 101 Denver CO 80239', '(720) 865-4600')
 
     bolt = Vehicle.new('987654321abcdefgh', 2019, 'Chevrolet', 'Bolt', :ev)

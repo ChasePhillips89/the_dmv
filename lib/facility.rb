@@ -16,12 +16,16 @@ class Facility
   end
 
   def register_vehicle(vehicle)
+
+    if services.empty?
+      return nil
+    end
      
       vehicle.registration_date = Date.new(2023, 1, 12)
 
       plate_type = vehicle.plate_type
       
-      # collect_fees(plate_type) Unsure if this is necessary
+      collect_fees(plate_type)
 
       @registered_vehicles << vehicle
   end
@@ -30,9 +34,9 @@ class Facility
     if plate_type == :regular
       @collected_fees += 100
     elsif plate_type == :antique
-      @collected_fees += 50
+      @collected_fees += 25
     elsif plate_type == :ev
-      @collected_fees += 75
+      @collected_fees += 200
     else
       @collected_fees += 0  
     end
