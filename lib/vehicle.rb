@@ -15,15 +15,17 @@ def antique?
 end
 
 def electric_vehicle?
-  @engine == :ev
+  @engine == :ev  
 end
+
+
 def plate_type
   if antique?
-    "antique"  
+    :antique 
   elsif electric_vehicle?
-    "ev"  
+    :ev  
   else
-    "regular" 
+    :regular 
 
   end
 end
