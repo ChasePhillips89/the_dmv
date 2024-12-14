@@ -1,6 +1,6 @@
 require 'date'
 class Vehicle
-attr_accessor :vin, :year, :make, :model, :engine, :registration_date
+attr_accessor :vin, :year, :make, :model, :engine, :registration_date, :plate_type
 def initialize(vin, year, make, model, engine)
   @vin = vin
   @year = year

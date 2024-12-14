@@ -24,8 +24,8 @@ RSpec.describe 'Facility and Vehicle Registration' do
     
     facility.register_vehicle(vehicle)
 
-    expect(vehicle.registration_date).to eq(2023, 1, 12)
-    expect(vehicle.plate_type).to eq(:regular)
+    expect(vehicle.registration_date).to eq(Date.new(2023, 1, 12))
+    expect(vehicle.plate_type).to eq('regular')
   end
 
   it 'collects fees when a vehicle is registered' do
@@ -66,9 +66,9 @@ RSpec.describe 'Facility and Vehicle Registration' do
     facility.register_vehicle(camaro)
     facility.register_vehicle(bolt)
 
-    expect(cruz.plate_type).to eq(:regular)
-    expect(camaro.plate_type).to eq(:antique)
-    expect(bolt.plate_type).to eq(:ev)
+    expect(cruz.plate_type).to eq('regular')
+    expect(camaro.plate_type).to eq('antique')
+    expect(bolt.plate_type).to eq('ev')
   end
 
   it 'collects the correct fees for multiple vehicles' do

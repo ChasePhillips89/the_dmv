@@ -16,21 +16,23 @@ class Facility
   end
 
   def register_vehicle(vehicle)
+    
     if @services.include?('Vehicle Registration')
-      vehicle.registration_date = Date.new(2023, 1, 12)
-      vehicle.plate_type = determine_plate_type(vehicle)
-      @registered_vehicles << vehicle
+      plate_type = determine_plate_type(vehicle) 
+      collect_fees(plate_type)
+    else
+      puts "Vehicle Registration service not available."
     end
   end
 
   def collect_fees(vehicle)
     plate_type = vehicle.plate_type
   
-    if plate_type == :regular
+    if plate_type == "regular"
       @collected_fees += 100
-    elsif plate_type == :antique
+    elsif plate_type == "antique"
       @collected_fees += 50
-    elsif plate_type == :ev
+    elsif plate_type == "ev"
       @collected_fees += 75
     end
   end
@@ -39,12 +41,12 @@ class Facility
 
   def determine_plate_type(vehicle)
    
-    if vehicle.electric_vehicle? == :ev
-      return :ev
+    if vehicle.electric_vehicle? == "ev"
+      return "ev"
     elsif vehicle.year < 1975
-      return :antique
+      return "antique"
     else
-      return :regular
+      return "regular"
     end
   end
 end
