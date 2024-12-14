@@ -1,3 +1,4 @@
+require 'date'
 class Facility
   attr_reader :name, :address, :phone, :services, :collected_fees, :registered_vehicles
 
@@ -15,23 +16,16 @@ class Facility
   end
 
   def register_vehicle(vehicle)
-    # Check if 'Vehicle Registration' service is available
-    return nil unless @services.include?('Vehicle Registration')
-
-    # Set the registration date and plate type (no need to modify Vehicle class)
-    vehicle.instance_variable_set(:@registration_date, Date.new(2023, 1, 12))
-    vehicle.instance_variable_set(:@plate_type, determine_plate_type(vehicle))
-
-    # Add the vehicle to the list of registered vehicles
-    @registered_vehicles << vehicle
-
-    # Collect fees based on the plate type
-    collect_fees(vehicle)
+    if @services.include?('Vehicle Registration')
+      vehicle.registration_date = Date.new(2023, 1, 12)
+      vehicle.plate_type = determine_plate_type(vehicle)
+      @registered_vehicles << vehicle
+    end
   end
 
   def collect_fees(vehicle)
-    plate_type = vehicle.instance_variable_get(:@plate_type)
-
+    plate_type = vehicle.plate_type
+  
     if plate_type == :regular
       @collected_fees += 100
     elsif plate_type == :antique
@@ -41,11 +35,11 @@ class Facility
     end
   end
 
-  private
+ 
 
   def determine_plate_type(vehicle)
-    # Determine the plate type based on the vehicle's year and type using simple conditionals
-    if vehicle.vehicle_type == :ev
+   
+    if vehicle.electric_vehicle? == :ev
       return :ev
     elsif vehicle.year < 1975
       return :antique

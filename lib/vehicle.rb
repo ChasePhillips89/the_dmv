@@ -1,19 +1,30 @@
+require 'date'
 class Vehicle
-attr_reader :vin, :year, :make, :model, :engine, :registration_date
-  def initialize(vehicle_details)
-    @vin = vehicle_details[:vin]
-    @year = vehicle_details[:year]
-    @make = vehicle_details[:make]
-    @model = vehicle_details[:model]
-    @engine = vehicle_details[:engine]
-    @registration_date = nil
-  end
+attr_accessor :vin, :year, :make, :model, :engine, :registration_date
+def initialize(vin, year, make, model, engine)
+  @vin = vin
+  @year = year
+  @make = make
+  @model = model
+  @engine = engine
+  @registration_date = nil
+end
 
-  def antique?
-    Time.now.year - @year >= 25
-  end
+def antique?
+  Time.now.year - @year >= 25
+end
 
-  def electric_vehicle?
-    @engine == :ev
+def electric_vehicle?
+  @engine == :ev
+end
+def plate_type
+  if antique?
+    "antique"  
+  elsif electric_vehicle?
+    "ev"  
+  else
+    "regular" 
+
   end
+end
 end
