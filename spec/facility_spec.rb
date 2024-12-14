@@ -23,14 +23,14 @@ RSpec.describe 'Facility and Vehicle Registration' do
     facility_2 = Facility.new('DMV Northeast Branch', '4685 Peoria Street Suite 101 Denver CO 80239', '(720) 865-4600')
     facility.add_service('Vehicle Registration')
 
-    vehicle = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
+    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
     
     
-    facility.register_vehicle(vehicle)
+    facility.register_vehicle(cruz)
 
-    expect(facility.registered_vehicles).to eq([vehicle])
-    expect(vehicle.registration_date).to eq(Date.new(2023, 1, 12))
-    expect(vehicle.plate_type).to eq(:regular)
+    expect(facility.registered_vehicles).to eq([cruz])
+    expect(cruz.registration_date).to eq(Date.today)
+    expect(cruz.plate_type).to eq(:regular)
   end
 
   it 'collects fees when a vehicle is registered' do
@@ -61,6 +61,25 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
     expect(facility.registered_vehicles).to include(cruz, camaro, bolt)
     
+  end
+
+  it 'gives registration date for vehicles' do
+    facility = Facility.new('DMV Tremont Branch', '2855 Tremont Place Suite 118 Denver CO 80205', '(720) 865-4600')
+    facility_2 = Facility.new('DMV Northeast Branch', '4685 Peoria Street Suite 101 Denver CO 80239', '(720) 865-4600')
+    facility.add_service('Vehicle Registration')
+    facility_2.add_service('Vehicle Registration')
+
+    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
+    camaro = Vehicle.new('1a2b3c4d5e6f', 1969, 'Chevrolet', 'Camaro', :ice)
+    bolt = Vehicle.new('987654321abcdefgh', 2019, 'Chevrolet', 'Bolt', :ev)
+
+    facility.register_vehicle(cruz)
+    facility.register_vehicle(camaro)
+    facility.register_vehicle(bolt)
+
+    expect(cruz.registration_date).to eq(Date.today)
+    expect(camaro.registration_date).to eq(Date.today)
+    expect(bolt.registration_date).to eq(Date.today)
   end
 
   it 'sets the correct plate type for different vehicle types' do

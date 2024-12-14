@@ -21,7 +21,7 @@ class Facility
       return nil
     end
      
-      vehicle.registration_date = Date.new(2023, 1, 12)
+      vehicle.registration_date = Date.today
 
       plate_type = vehicle.plate_type
       
