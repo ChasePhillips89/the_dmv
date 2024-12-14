@@ -83,7 +83,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     facility.register_vehicle(camaro)
     facility.register_vehicle(bolt)
 
-    expect(facility.collected_fees).to eq(225)
+    expect(facility.collected_fees).to eq(325)
     
   end
 

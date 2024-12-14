@@ -22,7 +22,7 @@ class Facility
 
       plate_type = vehicle.plate_type
       
-      collect_fees(plate_type)
+      # collect_fees(plate_type) Unsure if this is necessary
 
       @registered_vehicles << vehicle
     else
@@ -50,9 +50,9 @@ class Facility
     when :regular
       @collected_fees += 100
     when :antique
-      @collected_fees += 50
+      @collected_fees += 25
     when :ev
-      @collected_fees += 75
+      @collected_fees += 200
     else
       @collected_fees += 0  
     end
