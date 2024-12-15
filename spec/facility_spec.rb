@@ -159,6 +159,21 @@ RSpec.describe 'Facility and Vehicle Registration' do
     
   end
 
+  it 'returns the registrants age' do
+    registrant_2 = Registrant.new('Penny', 16 )
+
+    expect(registrant_2.age).to eq(16)
+
+  end
+
+  it 'returns if registrant has a permit' do
+    registrant_2 = Registrant.new('Penny', 16)
+
+    expect(registrant_2.permit?).to eq(false)
+  end
+
+  
+
 
    
 
