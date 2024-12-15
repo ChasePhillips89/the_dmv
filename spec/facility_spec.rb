@@ -197,19 +197,58 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
     @facility.administer_written_test(registrant_3)
     @facility.administer_written_test(registrant_1)
+    @facility.administer_written_test(registrant_2)
 
     registrant_3.earn_permit
+    registrant_2.earn_permit
 
     @facility.add_service('Road Test')
 
     @facility.administer_road_test(registrant_3)
     @facility.administer_road_test(registrant_1)
+    @facility.administer_road_test(registrant_2)
 
     expect(registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     expect(registrant_1.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
+    expect(registrant_2.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
   end
 
+  it 'renews registrant drivers license' do
+    registrant_1 = Registrant.new('Bruce', 18, true )
+    registrant_2 = Registrant.new('Penny', 16 )
+    registrant_3 = Registrant.new('Tucker', 15 )
 
+    @facility.administer_written_test(registrant_3)
+    @facility.administer_written_test(registrant_1)
+    @facility.administer_written_test(registrant_2)
+
+    registrant_3.earn_permit
+    registrant_2.earn_permit
+
+    @facility.add_service('Road Test')
+
+    @facility.administer_road_test(registrant_3)
+    @facility.administer_road_test(registrant_1)
+    @facility.administer_road_test(registrant_2)
+
+    @facility.renew_drivers_license(registrant_1)
+    @facility.renew_drivers_license(registrant_3)
+    @facility.renew_drivers_license(registrant_2)
+
+    expect(registrant_1.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
+    expect(registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+    expect(registrant_2.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
+
+    @facility.add_service('Renew License')
+
+    @facility.renew_drivers_license(registrant_1)
+    @facility.renew_drivers_license(registrant_3)
+    @facility.renew_drivers_license(registrant_2)
+
+    expect(registrant_1.license_data).to eq({:written=>true, :license=>true, :renewed=>true})
+    expect(registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+    expect(registrant_2.license_data).to eq({:written=>true, :license=>true, :renewed=>true})
+  end
 
 
    
