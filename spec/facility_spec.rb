@@ -138,14 +138,22 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
   it 'administers written test' do
     registrant_1 = Registrant.new('Bruce', 18, true )
+    registrant_2 = Registrant.new('Penny', 16 )
 
     expect(registrant_1.license_data[:written]).to eq(false)
+    expect(registrant_2.license_data[:written]).to eq(false)
 
     @facility.administer_written_test(registrant_1)
+    
+
+    registrant_2.earn_permit
+
+    @facility.administer_written_test(registrant_2)
     
     @facility.add_service('Written Test')
 
     expect(registrant_1.license_data[:written]).to eq(true)
+    expect(registrant_2.license_data[:written]).to eq(true)
   end
 
   it 'shows registrant has taken written test' do
@@ -161,9 +169,10 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
   it 'returns the registrants age' do
     registrant_2 = Registrant.new('Penny', 16 )
+    registrant_3 = Registrant.new('Tucker', 15 )
 
     expect(registrant_2.age).to eq(16)
-
+    expect(registrant_3.age).to eq(15)
   end
 
   it 'returns if registrant has a permit' do
@@ -172,7 +181,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     expect(registrant_2.permit?).to eq(false)
   end
 
-  
+
 
 
    
