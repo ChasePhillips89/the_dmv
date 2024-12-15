@@ -37,9 +37,9 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
     @facility.add_service('Vehicle Registration')
 
-    vehicle = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
+    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
     
-    @facility.register_vehicle(vehicle)
+    @facility.register_vehicle(cruz)
 
     expect(@facility.collected_fees).to eq(100)
   end
@@ -119,6 +119,12 @@ RSpec.describe 'Facility and Vehicle Registration' do
     expect(@facility.register_vehicle(bolt)).to be_nil
     expect(@facility.registered_vehicles).to be_empty
     expect(@facility.collected_fees).to eq(0)
+  end
+
+  it 'returns license data' do
+    registrant_1 = Registrant.new('Bruce', 18, true )
+
+    expect(registrant_1.license_data).to eq({ written: false, license: false, renewed: false })
   end
 end
   
