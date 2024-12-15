@@ -17,10 +17,8 @@ class Facility
 
   def register_vehicle(vehicle)
 
-    if services.empty?
-      return nil
-    end
-     
+    if services.include?('Vehicle Registration')
+      
       vehicle.registration_date = Date.today
 
       plate_type = vehicle.plate_type
@@ -28,6 +26,7 @@ class Facility
       collect_fees(plate_type)
 
       @registered_vehicles << vehicle
+    end
   end
 
   def collect_fees(plate_type)
@@ -40,5 +39,9 @@ class Facility
     else
       @collected_fees += 0  
     end
+  end
+
+  def administer_written_test(registrant)
+    registrant.license_data[:written] = true
   end
 end

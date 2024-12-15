@@ -112,19 +112,46 @@ RSpec.describe 'Facility and Vehicle Registration' do
     
   end
 
-  it 'does not register vehicles if there are no services' do
+  it 'does not register vehicles if vehicle registration is not a service' do
 
     bolt = Vehicle.new('987654321abcdefgh', 2019, 'Chevrolet', 'Bolt', :ev)
 
-    expect(@facility.register_vehicle(bolt)).to be_nil
-    expect(@facility.registered_vehicles).to be_empty
-    expect(@facility.collected_fees).to eq(0)
+    @facility_2.register_vehicle(bolt)
+
+    expect(@facility_2.register_vehicle(bolt)).to be_nil
+    expect(@facility_2.registered_vehicles).to be_empty
+    expect(@facility_2.collected_fees).to eq(0)
   end
 
   it 'returns license data' do
     registrant_1 = Registrant.new('Bruce', 18, true )
 
     expect(registrant_1.license_data).to eq({ written: false, license: false, renewed: false })
+  end
+
+  it 'returns if registrant has a permit' do
+
+    registrant_1 = Registrant.new('Bruce', 18, true )
+ 
+    expect(registrant_1.permit?).to eq(true)
+  end
+
+  it 'administers written test' do
+    registrant_1 = Registrant.new('Bruce', 18, true )
+
+    expect(registrant_1.license_data[:written]).to eq(false)
+
+    @facility.administer_written_test(registrant_1)
+    
+    @facility.add_service('Written Test')
+
+    expect(registrant_1.license_data[:written]).to eq(true)
+
+    
+
+   
+
+    
   end
 end
   
