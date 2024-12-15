@@ -146,12 +146,23 @@ RSpec.describe 'Facility and Vehicle Registration' do
     @facility.add_service('Written Test')
 
     expect(registrant_1.license_data[:written]).to eq(true)
+  end
 
+  it 'shows registrant has taken written test' do
+    registrant_1 = Registrant.new('Bruce', 18, true )
+
+    @facility.add_service('Written Test')
+
+    @facility.administer_written_test(registrant_1)
+
+    expect(registrant_1.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
     
+  end
+
 
    
 
     
-  end
+  
 end
   
