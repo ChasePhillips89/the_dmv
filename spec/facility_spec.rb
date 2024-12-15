@@ -139,21 +139,27 @@ RSpec.describe 'Facility and Vehicle Registration' do
   it 'administers written test' do
     registrant_1 = Registrant.new('Bruce', 18, true )
     registrant_2 = Registrant.new('Penny', 16 )
+    registrant_3 = Registrant.new('Tucker', 15 )
+    
 
     expect(registrant_1.license_data[:written]).to eq(false)
     expect(registrant_2.license_data[:written]).to eq(false)
+    expect(registrant_3.license_data[:written]).to eq(false)
 
     @facility.administer_written_test(registrant_1)
     
 
     registrant_2.earn_permit
+    registrant_3.earn_permit
 
     @facility.administer_written_test(registrant_2)
+    @facility.administer_written_test(registrant_3)
     
     @facility.add_service('Written Test')
 
     expect(registrant_1.license_data[:written]).to eq(true)
     expect(registrant_2.license_data[:written]).to eq(true)
+    expect(registrant_3.license_data[:written]).to eq(false)
   end
 
   it 'shows registrant has taken written test' do
@@ -177,8 +183,30 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
   it 'returns if registrant has a permit' do
     registrant_2 = Registrant.new('Penny', 16)
+    registrant_3 = Registrant.new('Tucker', 15 )
 
     expect(registrant_2.permit?).to eq(false)
+    expect(registrant_3.permit?).to eq(false)
+
+  end
+
+  it 'administers road test' do
+    registrant_1 = Registrant.new('Bruce', 18, true )
+    registrant_2 = Registrant.new('Penny', 16 )
+    registrant_3 = Registrant.new('Tucker', 15 )
+
+    @facility.administer_written_test(registrant_3)
+    @facility.administer_written_test(registrant_1)
+
+    registrant_3.earn_permit
+
+    @facility.add_service('Road Test')
+
+    @facility.administer_road_test(registrant_3)
+    @facility.administer_road_test(registrant_1)
+
+    expect(registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+    expect(registrant_1.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
   end
 
 

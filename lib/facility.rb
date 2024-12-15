@@ -42,6 +42,17 @@ class Facility
   end
 
   def administer_written_test(registrant)
+    if registrant.age >= 16
     registrant.license_data[:written] = true
+    end
+  end
+
+  def administer_road_test(registrant)
+    
+    if registrant.license_data[:written]
+      registrant.license_data[:license] = true 
+    else
+      "Registrant must pass the written test before taking the road test!!!"
+    end
   end
 end
