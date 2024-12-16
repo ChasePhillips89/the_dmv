@@ -12,7 +12,7 @@ class VehicleFactory
         year: vehicle[:year],
         make: vehicle[:make],
         model: vehicle[:model],
-        engine: :ev,
+        engine: :ev
         
       })
       @created_vehicles << new_vehicle
