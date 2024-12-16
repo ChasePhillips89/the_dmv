@@ -11,11 +11,19 @@ RSpec.describe Registrant do
     end
 
     it 'creates a registrant with name, age, and permit status when they do not have permit' do
-      registrant_2 = Registrant.new('Penny', 15)
+      registrant_2 = Registrant.new('Penny', 16)
       expect(registrant_2.name).to eq('Penny')
-      expect(registrant_2.age).to eq(15)
+      expect(registrant_2.age).to eq(16)
       expect(registrant_2.permit?).to be(false)
       expect(registrant_2.license_data).to eq({:written => false, :license => false, :renewed => false})
+    end
+
+    it 'creates a registrant with name, age, and permit status when they do not have permit' do
+      registrant_3 = Registrant.new('Tucker', 15)
+      expect(registrant_3.name).to eq('Tucker')
+      expect(registrant_3.age).to eq(15)
+      expect(registrant_3.permit?).to be(false)
+      expect(registrant_3.license_data).to eq({:written => false, :license => false, :renewed => false})
     end
   
 
@@ -26,7 +34,7 @@ RSpec.describe Registrant do
     end
 
     it 'returns false if they do not have a permit' do
-      registrant_2 = Registrant.new('Penny', 15)
+      registrant_2 = Registrant.new('Penny', 16)
       expect(registrant_2.permit?).to be(false)
     end
   
