@@ -140,8 +140,9 @@ RSpec.describe 'Facility and Vehicle Registration' do
     registrant_1 = Registrant.new('Bruce', 18, true )
     registrant_2 = Registrant.new('Penny', 16 )
     registrant_3 = Registrant.new('Tucker', 15 )
+    @facility.add_service('Written Test')
+    @facility.add_service('Vehicle Registration')
     
-
     expect(registrant_1.license_data[:written]).to eq(false)
     expect(registrant_2.license_data[:written]).to eq(false)
     expect(registrant_3.license_data[:written]).to eq(false)
@@ -194,6 +195,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     registrant_1 = Registrant.new('Bruce', 18, true )
     registrant_2 = Registrant.new('Penny', 16 )
     registrant_3 = Registrant.new('Tucker', 15 )
+    @facility.add_service('Road Test')
 
     @facility.administer_written_test(registrant_3)
     @facility.administer_written_test(registrant_1)
@@ -217,6 +219,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     registrant_1 = Registrant.new('Bruce', 18, true )
     registrant_2 = Registrant.new('Penny', 16 )
     registrant_3 = Registrant.new('Tucker', 15 )
+    @facility.add_service('Written Test')
 
     @facility.administer_written_test(registrant_3)
     @facility.administer_written_test(registrant_1)
