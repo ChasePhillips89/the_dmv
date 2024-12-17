@@ -3,7 +3,6 @@ require 'spec_helper'
 RSpec.describe VehicleFactory do
 
   it 'confirms vehicle factory class exists' do
-
     @factory = VehicleFactory.new
 
     expect(@factory).to be_a(VehicleFactory)

@@ -4,7 +4,6 @@ require 'pry'
 RSpec.describe DMVFacility do
 
   it 'confirms offices class exists' do
-
     @facility = DMVFacility.new
 
     expect(@facility).to be_a(DMVFacility)
@@ -15,8 +14,7 @@ RSpec.describe DMVFacility do
   it 'returns an array' do
     co_office_locations = DmvDataService.new.co_dmv_office_locations
   
-
-  expect(co_office_locations).to be_an(Array)
+    expect(co_office_locations).to be_an(Array)
   end
 
   it 'creates colorado offices' do

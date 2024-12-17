@@ -8,7 +8,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     @facility_3 = Facility.new({name: 'DMV Northwest Branch', address: '3698 W. 44th Avenue Denver CO 80211', phone: '(720) 865-4600'})
   end
   
-  it 'can initialize' do
+  it 'can initialize' do 
     expect(@facility).to be_an_instance_of(Facility)
     expect(@facility.name).to eq('DMV Tremont Branch')
     expect(@facility.address).to eq('2855 Tremont Place Suite 118 Denver CO 80205')
