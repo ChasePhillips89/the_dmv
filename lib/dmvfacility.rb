@@ -8,8 +8,8 @@ class DMVFacility
   def create_facilities(facility_data)
     facility_data.each do |facility|
       new_facility = Facility.new({
-        :name => facility[:dmv_office],
-        :address => facility[:address_li],
+        :name => "#{facility[:dmv_office]} #{facility[:office_name]} #{facility[:name]}",
+        :address => "#{facility[:address_li]} #{facility[:address1]} #{facility[:street_address_line_1]} #{facility[:city]} #{facility[:state]} #{facility[:zip_code]}",
         :phone => facility[:phone]
         
         
