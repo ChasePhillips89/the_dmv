@@ -24,7 +24,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
     @facility.add_service('Vehicle Registration')
 
-    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
+    cruz = Vehicle.new(vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice)
      
     @facility.register_vehicle(cruz)
 
@@ -37,7 +37,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
     @facility.add_service('Vehicle Registration')
 
-    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
+    cruz = Vehicle.new(vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice)
     
     @facility.register_vehicle(cruz)
 
@@ -49,9 +49,9 @@ RSpec.describe 'Facility and Vehicle Registration' do
     @facility.add_service('Vehicle Registration')
     @facility_2.add_service('Vehicle Registration')
 
-    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
-    camaro = Vehicle.new('1a2b3c4d5e6f', 1969, 'Chevrolet', 'Camaro', :ice)
-    bolt = Vehicle.new('987654321abcdefgh', 2019, 'Chevrolet', 'Bolt', :ev)
+    cruz = Vehicle.new(vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice)
+    camaro = Vehicle.new(vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice)
+    bolt = Vehicle.new(vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev)
 
     @facility.register_vehicle(cruz)
     @facility.register_vehicle(camaro)
@@ -66,9 +66,9 @@ RSpec.describe 'Facility and Vehicle Registration' do
     @facility.add_service('Vehicle Registration')
     @facility_2.add_service('Vehicle Registration')
 
-    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
-    camaro = Vehicle.new('1a2b3c4d5e6f', 1969, 'Chevrolet', 'Camaro', :ice)
-    bolt = Vehicle.new('987654321abcdefgh', 2019, 'Chevrolet', 'Bolt', :ev)
+    cruz = cruz = Vehicle.new(vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice)
+    camaro = Vehicle.new(vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice)
+    bolt = Vehicle.new(vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev)
 
     @facility.register_vehicle(cruz)
     @facility.register_vehicle(camaro)
@@ -83,9 +83,9 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
     @facility.add_service('Vehicle Registration')
 
-    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
-    camaro = Vehicle.new('1a2b3c4d5e6f', 1969, 'Chevrolet', 'Camaro', :ice)
-    bolt = Vehicle.new('987654321abcdefgh', 2019, 'Chevrolet', 'Bolt', :ev)
+    cruz = cruz = Vehicle.new(vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice)
+    camaro = Vehicle.new(vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice)
+    bolt = Vehicle.new(vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev)
 
     @facility.register_vehicle(cruz)
     @facility.register_vehicle(camaro)
@@ -100,9 +100,9 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
     @facility.add_service('Vehicle Registration')
 
-    cruz = Vehicle.new('123456789abcdefgh', 2012, 'Chevrolet', 'Cruz', :ice)
-    camaro = Vehicle.new('1a2b3c4d5e6f', 1969, 'Chevrolet', 'Camaro', :ice)
-    bolt = Vehicle.new('987654321abcdefgh', 2019, 'Chevrolet', 'Bolt', :ev)
+    cruz = cruz = Vehicle.new(vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice)
+    camaro = Vehicle.new(vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice)
+    bolt = Vehicle.new(vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev)
 
     @facility.register_vehicle(cruz)
     @facility.register_vehicle(camaro)
@@ -114,7 +114,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
 
   it 'does not register vehicles if vehicle registration is not a service' do
 
-    bolt = Vehicle.new('987654321abcdefgh', 2019, 'Chevrolet', 'Bolt', :ev)
+    bolt = Vehicle.new(vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev)
 
     @facility_2.register_vehicle(bolt)
 
@@ -140,8 +140,9 @@ RSpec.describe 'Facility and Vehicle Registration' do
     registrant_1 = Registrant.new('Bruce', 18, true )
     registrant_2 = Registrant.new('Penny', 16 )
     registrant_3 = Registrant.new('Tucker', 15 )
+    @facility.add_service('Written Test')
+    @facility.add_service('Vehicle Registration')
     
-
     expect(registrant_1.license_data[:written]).to eq(false)
     expect(registrant_2.license_data[:written]).to eq(false)
     expect(registrant_3.license_data[:written]).to eq(false)
@@ -194,6 +195,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     registrant_1 = Registrant.new('Bruce', 18, true )
     registrant_2 = Registrant.new('Penny', 16 )
     registrant_3 = Registrant.new('Tucker', 15 )
+    @facility.add_service('Road Test')
 
     @facility.administer_written_test(registrant_3)
     @facility.administer_written_test(registrant_1)
@@ -217,6 +219,7 @@ RSpec.describe 'Facility and Vehicle Registration' do
     registrant_1 = Registrant.new('Bruce', 18, true )
     registrant_2 = Registrant.new('Penny', 16 )
     registrant_3 = Registrant.new('Tucker', 15 )
+    @facility.add_service('Written Test')
 
     @facility.administer_written_test(registrant_3)
     @facility.administer_written_test(registrant_1)
